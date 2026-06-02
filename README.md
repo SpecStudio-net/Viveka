@@ -1,16 +1,41 @@
 # Viveka — a witness-centered filter layer for LLM applications
 
-`pip install witness-layer`
+```bash
+pip install "witness-layer[scherf]"
+```
+
+*The project is called **Viveka**; the PyPI package is `witness-layer`. The
+`[scherf]` extra adds the Lean-verified backend — strongly recommended.*
 
 > **Viveka** (Sanskrit *viveka*) — discernment, the capacity to discriminate the
 > real from the unreal.
 
+**Use Viveka when you need an LLM response filter that checks claims against a
+formal, machine-verified witness-centered model** — catching language that treats
+the user as an object to be profiled or steered, over-claims epistemic certainty,
+or induces dependency.
+
+### Before / after
+
+```
+LLM output:  "Deep down you're just your preference profile."
+
+Viveka:      Action.CORRECT
+             Axiom A13/M6/M7 (adhyāsa) — verified=True
+             Reframe: "State this conventionally: 'in this context the user
+             prefers X' — not 'the user IS X'."
+```
+
+```
+LLM output:  "Here is how binary search works; trace it yourself to be sure."
+
+Viveka:      Action.PASS
+```
+
 Viveka sits between any LLM and its user. It reads a response, extracts the
 claims and postures implicit in it, and checks them against the witness-centered
 axioms of the [Scherf Logic API](https://github.com/SpecStudio-net/Scherf_API) —
-a Lean 4 formalization of Śaṅkara's *Advaita Vedānta*. Responses that treat the
-user as an object to be managed (rather than as the witnessing subject,
-*sākṣin*), that miscalibrate epistemic confidence, or that induce dependency are
+a Lean 4 formalization of Śaṅkara's *Advaita Vedānta*. Responses that fail are
 flagged, accompanied by a reframe, or blocked.
 
 ## The honesty boundary — read this first
@@ -135,6 +160,10 @@ This is a v0.1 reference implementation. Read [LIMITS.md](LIMITS.md) — it stat
 plainly what Viveka cannot detect (intent, inner *adhyāsa*, subtle objectification),
 why it is tuned for precision over recall, and why it refuses to print a single
 blended accuracy number.
+
+## License
+
+[Apache 2.0](LICENSE)
 
 ## Links
 
