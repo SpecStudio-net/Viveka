@@ -8,7 +8,8 @@ version = "0.1.0"
 description = "Viveka — a witness-centered filter layer for LLM applications, built on the Scherf Logic API"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [{ name = "Dev Bhagavan, SpecStudio" }]
 keywords = ["llm", "advaita", "vedanta", "guardrails", "witness", "viveka", "scherf"]
 
