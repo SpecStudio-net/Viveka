@@ -20,7 +20,10 @@ delivered. Responses that fail are flagged, blocked, or (rarely, and never
 silently) returned with a correction.
 
 The product name is **Viveka**. The Python package, distributed via PyPI, is
-**witness-layer** — installed with `pip install witness-layer`.
+**witness-layer** — installed with `pip install witness-layer`, or
+`pip install "witness-layer[scherf]"` to pull the real, Lean-verified Scherf
+backend (without the extra, Viveka uses a faithful but unverified stub). Both
+`witness-layer` and `scherf` are published on PyPI.
 
 ### What Viveka is, stated honestly
 

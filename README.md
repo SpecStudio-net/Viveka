@@ -105,26 +105,21 @@ flt = WitnessFilter(
 )
 ```
 
-## Install the real Scherf API (for machine-verified checks)
-
-The Scherf package is pure-Python with no dependencies. If you have it checked
-out locally (e.g. `~/Documents/Scherf_api`), put it on the path:
+## Installation
 
 ```bash
-PYTHONPATH=~/Documents/Scherf_api python demo.py        # or pytest
+pip install witness-layer            # heuristic + bundled faithful stub backend
+pip install "witness-layer[scherf]"  # adds the real, Lean-verified Scherf backend
 ```
 
-or `pip install` it once it ships a `pyproject.toml`:
+Both packages are on PyPI ([witness-layer](https://pypi.org/project/witness-layer/),
+[scherf](https://pypi.org/project/scherf/)). The `[scherf]` extra is strongly
+recommended — without it Viveka falls back to a faithful but **unverified** stub.
 
-```bash
-pip install git+https://github.com/SpecStudio-net/Scherf_API
-```
-
-`WitnessFilter()` auto-detects it: if `import scherf` succeeds it uses
-`ScherfChecker` (`backend_verified = True`); otherwise it falls back to the
-bundled faithful stub and reports `backend_verified = False` on every verdict.
-The test suite also auto-locates a local checkout via `$SCHERF_PATH` or
-`~/Documents/Scherf_api`.
+`WitnessFilter()` auto-detects the backend: if `import scherf` succeeds it uses
+`ScherfChecker` (`backend_verified = True`); otherwise it uses the bundled stub
+and reports `backend_verified = False` on every verdict. (The test suite also
+auto-locates a local checkout via `$SCHERF_PATH`.)
 
 ## Develop / test
 
