@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "witness-layer"
+version = "0.1.0"
+description = "Viveka — a witness-centered filter layer for LLM applications, built on the Scherf Logic API"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Dev Bhagavan, SpecStudio" }]
+keywords = ["llm", "advaita", "vedanta", "guardrails", "witness", "viveka", "scherf"]
+
+# witness_layer itself has ZERO hard runtime dependencies: it is importable and
+# its heuristic path is fully usable with nothing installed. Real machine-
+# verified checking requires the `scherf` package, declared as an optional
+# extra because it is distributed from GitHub, not (yet) PyPI:
+#
+#   pip install "witness-layer[scherf] @ ..."     # once published, or:
+#   pip install git+https://github.com/SpecStudio-net/Scherf_API
+#
+# Without scherf installed, WitnessFilter falls back to the bundled faithful
+# STUB checker and says so loudly (see witness_layer._scherf_stub).
+dependencies = []
+
+[project.optional-dependencies]
+scherf = ["scherf"]
+anthropic = ["anthropic>=0.40"]
+dev = ["pytest>=8"]
+
+[project.urls]
+"Scherf API" = "https://github.com/SpecStudio-net/Scherf_API"
+"AIM" = "https://github.com/SpecStudio-net/Advaita-Inquiry-Matrix"
+"Advaita (Lean 4)" = "https://github.com/matthew-scherf/Advaita"
+
+[tool.hatch.build.targets.wheel]
+packages = ["witness_layer"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
